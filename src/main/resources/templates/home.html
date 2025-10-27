@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Welcome</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div id="container">
+		<div id="main">
+			<h2>home</h2>
+			<div class="main-pic">
+				<img alt="猫" th:src="@{/images/cat1.jpg}">
+			</div>
+			<div class="menu">
+				<th:block th:if="${session.loginEmail}">
+				<!-- 세션이 있을 때 -->
+				<a th:href="@{/members/logout}" th:text="로그아웃"></a> |
+				</th:block>
+				<!-- th:unless => else if -->
+				<th:block th:unless="${session.loginEmail}">
+				<!-- 세션이 없을 때 -->
+				<a th:href="@{/members/login}" th:text="로그인"></a> |
+				</th:block>
+				<a th:href="@{/members/join}">회원 가입</a> |
+				<a th:href="@{/members}">회원 목록</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

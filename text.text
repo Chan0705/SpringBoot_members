@@ -1,0 +1,8 @@
+- DB 연동 작업 순서
+1. Entity - DB 연동
+2. MemberRepository - 인터페이스. 상속받음
+3. MemberService - save()
+4. MemberController - save()
+
+회원가입 : 입력 => DB로 전달(DTO => entity)
+로그인 : DB => View(entity => 출력(DTO))

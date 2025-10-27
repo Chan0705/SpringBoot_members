@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Join</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div id="container">
+		<h2>Sign UP</h2>
+			<form th:action="@{/members/join}" method="post" class="joinForm">
+				<fieldset>
+					<ul>
+						<li>
+							<label for="email">email</label>
+							<input type="text" name="email" id="email" required>
+						</li>
+						<li>
+							<label for="pw">password</label>
+							<input type="password" name="pw" id="pw">
+						</li>
+						<li>
+							<label for="name">Name</label>
+							<input type="text" name="name" id="name">
+						</li>
+						<li>
+							<label for="gender-m">
+								<input type="radio" name="gender" value="M" checked id="gender-m"> Male
+							</label>
+							<label for="gender-fm">
+								<input type="radio" name="gender" value="FM" id="gender-fm"> Female
+							</label>
+						</li>
+						<li class="button">
+							<input type="submit" value="가입">
+							<input type="reset" value="취소">
+						</li>
+					</ul>
+				</fieldset>
+			</form>
+	</div>
+</body>
+</html>

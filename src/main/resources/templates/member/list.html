@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>List</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div id="container">
+	<h2>List</h2>
+	<p class="home"><a th:href="@{/}">Go Home</a></p>
+		<table id="memberList">
+			<thead>
+				<tr>
+					<th>식별번호</th>
+					<th>이메일</th>
+					<th>이름</th>
+					<th>성별</th>
+					<th>가입일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="m : ${memberList}">
+					<td th:text="${m.id}"></td>
+						<!-- 이메일 클릭 시, 회원 상세 정보로 이동 -->
+						<td>
+							<a class="detail" th:href="@{/members/{id}(id=${m.id})}" th:text="${m.email}"></a>
+						</td>
+<!--					<td th:text="${m.email}"></td>-->
+					<td th:text="${m.name}"></td>
+					<td th:text="${m.gender}"></td>
+					<td th:text="${m.joinDate}"></td>
+				</tr>
+			</tbody>
+		</table>
+</div>
+</body>
+</html>
