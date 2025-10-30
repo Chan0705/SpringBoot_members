@@ -63,8 +63,8 @@ public class MemberService {
         MemberDTO dto = new MemberDTO();
         dto.setId(member.getId());
         dto.setEmail(member.getEmail());
-        dto.setName(dto.getName());
-        dto.setGender(dto.getGender());
+        dto.setName(member.getName());
+        dto.setGender(member.getGender());
 
         return dto;
     }

@@ -85,8 +85,11 @@ public class MemberController {
             // 입력정보로 로그인 비교 - 로그인 가능 여부 체크
             MemberDTO dto = service.login(email, pw);
             
-            // 로그인 성공시 - 세션발급
+            // 로그인 성공시 - 이메일 세션발급
             session.setAttribute("loginEmail", dto.getEmail());
+            // 이름 세션 발급
+            session.setAttribute("loginName", dto.getName());
+            System.out.println("이름: " + dto.getName());
             return "redirect:/";
         } catch (Exception e){
             // 로그인 실패 시 에러 메세지 출력

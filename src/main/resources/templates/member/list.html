@@ -24,7 +24,10 @@
 					<td th:text="${m.id}"></td>
 						<!-- 이메일 클릭 시, 회원 상세 정보로 이동 -->
 						<td>
-							<a class="detail" th:href="@{/members/{id}(id=${m.id})}" th:text="${m.email}"></a>
+							<a class="detail"
+							   th:href="@{/members/{id}(id=${m.id})}"
+							   th:text="${m.email}">
+							</a>
 						</td>
 <!--					<td th:text="${m.email}"></td>-->
 					<td th:text="${m.name}"></td>

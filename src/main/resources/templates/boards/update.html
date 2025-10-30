@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>게시글 수정</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div id="container">
+	<h2>게시글 수정</h2>
+	<form th:action="@{/boards/update}" method="post" class="boardUpdate">
+		<!-- 입력 상자 없이 데이터 숨겨서 보냄 -->
+		<input type="hidden" name="id" th:value="${board.id}">
+		<fieldset>
+			<ul>
+				<li>
+					<input type="text" name="title"
+						   th:value="${board.title}" size=62>
+				</li>
+				<li>
+	    				<textarea name="content" rows="8" cols="60"
+								  th:text="${board.content}"></textarea>
+				</li>
+				<li>
+					<input type="text" size=62 readonly
+						   th:value=" '글쓴이: ' + ${board.writer} +
+	    					  		' (작성일: ' + ${board.regDate} + ')' " >
+				</li>
+				<li>
+					<input type="text" size=62
+						   th:value="'조회수: ' + ${board.hits}" readonly>
+				</li>
+				<li>
+					<input type="submit" value="저장">
+					<input type="reset" value="취소">
+				</li>
+			</ul>
+		</fieldset>
+	</form>
+</div>
+</body>
+</html>

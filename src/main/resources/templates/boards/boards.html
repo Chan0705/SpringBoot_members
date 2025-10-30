@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Boards</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div id="container">
+		<h2>자유 게시판</h2>
+		<table id="boardList">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>글쓴이</th>
+					<th>조회수</th>
+					<th>작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="b: ${boardList}">
+					<td th:text="${b.id}"></td>
+<!--					<td>-->
+<!--						<a class="detail"-->
+<!--						   th:href="@{/boards/{id}(id=${b.id})}"-->
+<!--						   th:text="${b.title}">-->
+<!--						</a>-->
+<!--					</td>-->
+					<!-- 위와 아래는 동일한 기능 -->
+					<!-- 상단코드 : URI 변수 바인딩 방식, 안전하고 인코딩 자동, 문법이 살짝 복잡함
+					 , 자동으로 URL 인코딩 처리됨 → 보안상 더 안전 -->
+					<!-- 하단 코드 : 문자열 템플릿 방식, 직관적이고 간단,
+					파라미터 인코딩 안 됨, 보안 취약 가능성(예외나 오류 발생 시 디버깅이 어려울 수 있음)-->
+					<td>
+						<a class="detail"
+						   th:href="@{|/boards/${b.id}|}"
+						   th:text="${b.title}">
+						</a>
+					</td>
+					<td th:text="${b.writer}"></td>
+					<td th:text="${b.hits}"></td>
+<!-- → b.regDate가 null이면 - 출력, 아니면 포맷해서 출력 → 이걸로 500 에러 방지 가능 -->
+					<td th:text="${b.regDate != null ? #dates.format(b.regDate, 'yyyy-MM-dd HH:mm') : '-'}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="writeBtn">
+			<a th:href="@{/boards/write}"><button>글쓰기</button></a>
+		</div>
+	</div>
+</body>
+</html>

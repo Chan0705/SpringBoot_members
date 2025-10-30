@@ -5,6 +5,11 @@
     width: 80%;
     margin: 0 auto;
 }
+
+ul{
+    padding-left: 0;
+}
+
 h2{
     border-bottom: 2px solid #ccc;
     padding: 16px;
@@ -15,7 +20,7 @@ ul li{
     margin: 10px;
 }
 
-/* index 스타일 */
+/* home 스타일 */
 #main{
     text-align: center;
 }
@@ -26,6 +31,24 @@ ul li{
 .menu{
     margin: 10px;
 }
+
+.menu a{
+    text-decoration: none;
+    color: lightblue;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px black;
+}
+
+.menu a:hover{
+    color: blue;
+    text-shadow: 1px 1px 3px white;
+    background-color: lightblue;
+    border-radius: 3px;
+    border: 1px dotted black;
+    padding: 2px;
+    margin: 2px;
+}
+
 
 /* join */
 .joinForm{
@@ -54,12 +77,12 @@ ul li{
 }
 
 /* list */
-#memberList{
+#memberList, #boardList{
     width: 600px;
     margin: 20px auto;
 }
 
-#memberList th, td{
+#memberList th, td, #boardList th, td{
     border: 1px solid black;
     border-radius: 3px;
     background-color: lightblue;
@@ -131,3 +154,67 @@ div a button:hover{
     background-color: yellow;
     border-radius: 5px;
 }
+
+/* 게시글 */
+
+.writeForm{
+    width: 500px;
+    margin: 0 auto;
+}
+
+.formDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.field ul li input, textarea {
+    width: 100%;
+}
+
+.field ul li p{
+    display: flex;
+    justify-content: end;
+}
+
+.field ul li p button:hover{
+    cursor: pointer;
+    background-color: darkgray;
+    border: 2px solid white;
+    border-radius: 3px;
+}
+
+/* btn */
+
+.writeBtn{
+    width: auto;
+    display: flex;
+    justify-content: end;
+    gap: 5px;
+}
+
+.writeBtn a{
+    text-decoration: none;
+    display: flex;
+}
+
+.writeBtn a button:hover{
+    cursor: pointer;
+    background-color: darkgray;
+    border: 2px solid white;
+    border-radius: 3px;
+}
+
+/*
+*/
+
+.searchForm{
+    width: 550px;
+    margin: 0 auto;
+    text-align: right;
+}
+
+.pagination{text-align: center;}
+.pagination a{padding: 4px;}
+
+.btnWrite button{padding: 8px 12px;}

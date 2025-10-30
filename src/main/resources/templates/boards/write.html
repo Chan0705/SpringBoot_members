@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Write</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div id="container">
+<!-- 세션이 없을 때 로그인 요청 (JS)	-->
+		<script th:inline="javascript">
+			let loginEmail = [[${session.loginEmail}]]
+			if(!loginEmail){
+				alert("로그인을 해주세요")
+				location.href="/members/login";
+			}
+		</script>
+
+
+		<h2>게시글 작성</h2>
+		<form th:action="@{/boards/write}" method="post" class="writeForm">
+		<div class="formDiv">
+		<fieldset class="field">
+			<ul>
+				<li>
+					<input type="text" name="title" required placeholder="제목">
+				</li>
+				<li>
+					<!-- textarea => 글 본문의 내용을 여러줄 지정, rows와 cols로 최대치를 지정가능 -->
+					<textarea name="content" rows="8" cols="60" placeholder="본문"></textarea>
+				</li>
+				<li>
+<!--					<input type="text" name="writer" th:value="${session.loginEmail}">-->
+					<input type="text" name="writer" th:value="${session.loginName}">
+<!--					<input type="text" name="writer" th:value="${session.loginName} ?: '이름없음'">-->
+				</li>
+				<li>
+					<p><button type="submit">등록</button></p>
+				</li>
+			</ul>
+		</fieldset>
+		</div>
+		</form>
+	</div>
+</body>
+</html>
