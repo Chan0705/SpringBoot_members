@@ -18,16 +18,21 @@
 
 
 		<h2>게시글 작성</h2>
-		<form th:action="@{/boards/write}" method="post" class="writeForm">
+		<form th:action="@{/boards/write}" method="post"
+			  class="writeForm" th:object="${boardDTO}">
+			<div th:if="${#fields.hasAnyErrors()}">
+				<div th:each="err : ${#fields.allErrors()}" th:text="${err}">
+				</div>
+			</div>
 		<div class="formDiv">
 		<fieldset class="field">
 			<ul>
 				<li>
-					<input type="text" name="title" required placeholder="제목">
+					<input type="text" th:field="*{title}" placeholder="제목">
 				</li>
 				<li>
 					<!-- textarea => 글 본문의 내용을 여러줄 지정, rows와 cols로 최대치를 지정가능 -->
-					<textarea name="content" rows="8" cols="60" placeholder="본문"></textarea>
+					<textarea th:field="*{content}" rows="8" cols="60" placeholder="본문"></textarea>
 				</li>
 				<li>
 <!--					<input type="text" name="writer" th:value="${session.loginEmail}">-->

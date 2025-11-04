@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 	<meta charset="UTF-8">
 	<title>Welcome</title>
@@ -13,18 +14,20 @@
 				<img alt="猫" th:src="@{/images/cat1.jpg}">
 			</div>
 			<div class="menu">
-				<th:block th:if="${session.loginEmail}">
-				<!-- 세션이 있을 때 -->
-				<a th:href="@{/members/logout}" th:text="로그아웃"></a> |
+
+				<th:block sec:authorize="isAuthenticated()">
+					<span sec:authentication="principal.username"></span> 님
+					<a th:href="@{/logout}">로그아웃</a> |
 				</th:block>
-				<!-- th:unless => else if -->
-				<th:block th:unless="${session.loginEmail}">
-				<!-- 세션이 없을 때 -->
-				<a th:href="@{/members/login}" th:text="로그인"></a> |
+
+				<th:block sec:authorize="isAnonymous()">
+					<a th:href="@{/members/login}">로그인</a> |
 				</th:block>
+
 				<a th:href="@{/members/join}">회원 가입</a> |
 				<a th:href="@{/members}">회원 목록</a> |
-				<a th:href="@{/boards/pages}">게시판</a>
+				<a th:href="@{/boards/pages}">게시판</a> |
+				<a th:href="@{/admin/dashboard}">관리자</a>
 <!--				<a th:href="@{/boards/write}">게시글 작성</a>-->
 			</div>
 <!--			<p th:text="접속중인 아이디: + ${session.loginName}"> </p>-->

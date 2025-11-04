@@ -5,6 +5,7 @@ import com.example.spring_friends.dto.MemberDTO;
 import com.example.spring_friends.entity.Member;
 import com.example.spring_friends.repository.MemberRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class MemberService {
     
     // 인스턴스 객체 생성 방식 - 생성자 주입 방식
     private MemberRepository repository;
+    private final PasswordEncoder pwEncoder;
 
 //    public MemberService(MemberRepository repository){
 //        this.repository = repository;
@@ -28,7 +30,7 @@ public class MemberService {
     public void save(MemberDTO dto){
 
         // dto를 entity로 변환 메서드 호출 - member에서 작성
-        Member member = Member.toSaveEntity(dto);
+        Member member = Member.toSaveEntity(dto, pwEncoder);
 
         repository.save(member);
     }
@@ -54,7 +56,7 @@ public class MemberService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이메일"));
 
         // pw 정보 비교
-        if(!member.getPw().equals(pw)){
+        if(!member.getPassword().equals(pw)){
             throw new IllegalArgumentException("비밀번호 불일치");
         }
 
@@ -64,6 +66,7 @@ public class MemberService {
         dto.setId(member.getId());
         dto.setEmail(member.getEmail());
         dto.setName(member.getName());
+        dto.setRole(member.getRole());
         dto.setGender(member.getGender());
 
         return dto;

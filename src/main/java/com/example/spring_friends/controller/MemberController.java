@@ -76,39 +76,42 @@ public class MemberController {
 
     // 로그인 처리
     // @RequestParam : HTTP 요청 파라미터를 컨트롤러 메서드의 인자로 바인딩할 때 사용하는 어노테이션
-    @PostMapping("/login")
-    public String loginForm(@RequestParam String email, @RequestParam String pw
-    , HttpSession session, RedirectAttributes ra){
-
-        try{
-            
-            // 입력정보로 로그인 비교 - 로그인 가능 여부 체크
-            MemberDTO dto = service.login(email, pw);
-            
-            // 로그인 성공시 - 이메일 세션발급
-            session.setAttribute("loginEmail", dto.getEmail());
-            // 이름 세션 발급
-            session.setAttribute("loginName", dto.getName());
-            System.out.println("이름: " + dto.getName());
-            return "redirect:/";
-        } catch (Exception e){
-            // 로그인 실패 시 에러 메세지 출력
-            // RedirectAttributes는 redirect 상태에서 에러메세지 출력
-            ra.addFlashAttribute("error", e.getMessage());
-            return "redirect:/members/login";
-        }
-
-//        return "/home";
-    }
-
-    // 로그아웃 처리
-    @GetMapping("/logout")
-    public String logout(HttpSession session){
-
-        // 세션 삭제
-        session.invalidate();
-        return "redirect:/";
-
-    }
+    
+    
+    // SecurityCofig에서 처리    
+//    @PostMapping("/login")
+//    public String loginForm(@RequestParam String email, @RequestParam String pw
+//    , HttpSession session, RedirectAttributes ra){
+//
+//        try{
+//            
+//            // 입력정보로 로그인 비교 - 로그인 가능 여부 체크
+//            MemberDTO dto = service.login(email, pw);
+//            
+//            // 로그인 성공시 - 이메일 세션발급
+//            session.setAttribute("loginEmail", dto.getEmail());
+//            // 이름 세션 발급
+//            session.setAttribute("loginName", dto.getName());
+//            System.out.println("이름: " + dto.getName());
+//            return "redirect:/";
+//        } catch (Exception e){
+//            // 로그인 실패 시 에러 메세지 출력
+//            // RedirectAttributes는 redirect 상태에서 에러메세지 출력
+//            ra.addFlashAttribute("error", e.getMessage());
+//            return "redirect:/members/login";
+//        }
+//
+////        return "/home";
+//    }
+//
+//    // 로그아웃 처리
+//    @GetMapping("/logout")
+//    public String logout(HttpSession session){
+//
+//        // 세션 삭제
+//        session.invalidate();
+//        return "redirect:/";
+//
+//    }
 
 }

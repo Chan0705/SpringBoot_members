@@ -3,6 +3,7 @@ package com.example.spring_friends.dto;
 // Form에 있는 data를 전달하는 역할
 // 게시판 내용 data 정의
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,7 +17,11 @@ import java.sql.Timestamp;
 public class BoardDTO {
     
     private Long id;
+
+    @NotEmpty(message = "제목은 필수 항목입니다.")
     private String title;
+
+    @NotEmpty(message = "글 내용은 필수 항목입니다.")
     private String content;
     private String writer;
     private Timestamp regDate;

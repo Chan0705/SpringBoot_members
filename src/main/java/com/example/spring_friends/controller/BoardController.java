@@ -4,6 +4,7 @@ package com.example.spring_friends.controller;
 import com.example.spring_friends.dto.BoardDTO;
 import com.example.spring_friends.entity.Board;
 import com.example.spring_friends.service.BoardService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -79,14 +81,16 @@ public class BoardController {
 
     // 글쓰기 페이지
     @GetMapping("/write") // 2차 url
-    public String writeForm(){
+    public String writeForm(BoardDTO dto){
         return "boards/write"; // boards/write.html
     }
 
     // 글쓰기 처리 - post
     @PostMapping("/write")
-    public String write(@ModelAttribute BoardDTO dto){
-        log.info("BoardDTO: " + dto);
+    public String write(@Valid BoardDTO dto, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return "boards/write"; // 에러 발생 시 돌려보낼 주소
+        }
         service.save(dto);
         return "redirect:/boards/pages";
     }

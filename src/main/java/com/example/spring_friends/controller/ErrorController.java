@@ -4,11 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class HomeController {
+public class ErrorController {
 
-    @GetMapping("/")
-    public String home() {
-
-        return "home";  //templates/index.html
+    @GetMapping("/noneaccess")
+    public String accessDenied() {
+        return "error/noneaccess"; // templates/error/noneaccess.html
     }
 }

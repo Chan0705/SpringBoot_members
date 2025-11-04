@@ -17,8 +17,9 @@ public class MemberDTO {
     private long id;
     private String name;
     private String email;
-    private String pw;
+    private String password;
     private String gender;
     private Timestamp joinDate;
+    private String role;
 
 }
